@@ -1,0 +1,9 @@
+<text>提问</text>
+<text>标题</text>
+<input style='border-style:solid;border-width:0.1rpx' placeholder='标题（必填）' bindblur='get_title'></input>
+<text>详细描述</text>
+<textarea style='border-style:solid;border-width:0.1rpx' placeholder='详细描述一下你的问题（可不填）' bindblur='get_body'></textarea>
+<switch bindchange='set_urgent'>紧急(遵守公序良俗，不是十万火急，不要选)</switch>
+<view></view>
+<!-->todo:使用editor标签来定义微信内置的富文本编辑器<-->
+<button bindtap='submit'>提交</button>

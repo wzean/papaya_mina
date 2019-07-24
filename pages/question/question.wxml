@@ -1,0 +1,7 @@
+<view>问答（仅用于测试前后端交流，丑，勿喷）</view>
+<button bindtap='get_new'>最新</button>
+<button bindtap='get_hot'>最热</button>
+<button bindtap='get_em'>紧急</button>
+<button bindtap='raise'>提问</button>
+<import src='../template/search_results'/>
+<template is="search_results" data="{{result_array}}"/>

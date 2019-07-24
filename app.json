@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/search/search",
+    "pages/index/index",
+    "pages/find/find",
+    "pages/question/question",
+    "pages/raise/raise",
+    "pages/me/me"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/search/search",
+        "text": "搜索",
+        "iconPath": "static/search.png",
+        "selectedIconPath": "static/search_.png"
+      },
+      {
+        "pagePath": "pages/question/question",
+        "text": "问答",
+        "iconPath": "static/question.png",
+        "selectedIconPath": "static/question_.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+        "iconPath": "static/find.png",
+        "selectedIconPath": "static/find_.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "static/me.png",
+        "selectedIconPath": "static/me_.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "北航知道",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

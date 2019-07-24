@@ -1,0 +1,3 @@
+<image src="{{userInfo.avatarUrl}}"></image>
+<view></view>
+<text>微信昵称:{{userInfo.nickName}}</text>
