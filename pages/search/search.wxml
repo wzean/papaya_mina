@@ -1,5 +1,6 @@
 <view>搜索</view>
 <input style='border-style:solid;border-width:0.1rpx' bindinput='search_input' placeholder='请输入关键字'></input>
 <button disabled='{{disabled}}' bindtap='search_execute'>搜索</button>
+
 <import src='../template/search_results'/>
 <template is="search_results" data="{{result_array}}"/>

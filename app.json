@@ -5,7 +5,8 @@
     "pages/find/find",
     "pages/question/question",
     "pages/raise/raise",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/post/post"
   ],
   "tabBar": {
     "list": [

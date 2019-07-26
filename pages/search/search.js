@@ -36,6 +36,13 @@ Page({
       })
     }
   },
+  get_post:function(e){
+    //var id = e.id;
+    wx.navigateTo({
+      url: '../post/post?post_id='+e.id
+    })
+  }
+  ,
   onReachBottom:function(){
     //try to get next page. make a new request.
   }
