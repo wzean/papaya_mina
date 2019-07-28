@@ -1,2 +1,2 @@
-<!--pages/post/post.wxml-->
-<text>pages/post/post.wxml</text>
+<import src='../template/post'/>
+<template is="post" data="{{post}}"/>

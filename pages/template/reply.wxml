@@ -1,0 +1,5 @@
+<template name="reply.">
+<block wx:for="{{replies}}">
+  <text style='font-size:15px;color:grey'>{{item.body}}</text>
+</block>
+</template>

@@ -1,4 +1,5 @@
 //app.js
+
 App({
   onLaunch: function () {
     wx.login({
@@ -18,14 +19,17 @@ App({
               wx.setStorageSync('token',res.data.token);
               this.globalData.user_id = res.data.user_id;
               this.globalData.token = res.data.token;
-            },fail:()=>{
+            }, fail: ()=>{
               this.globalData.user_id = wx.getStorageSync('user_id');
               this.globalData.token = wx.getStorageSync('token');
               // and hope the token works.
             }
           })
         }
-      }
+      },
+      fail: ()=> {
+        this.globalData.user_id = wx.getStorageSync('user_id');
+        this.globalData.token = wx.getStorageSync('token');}
     })
     // 获取用户信息
     wx.getSetting({
