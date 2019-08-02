@@ -1,4 +1,7 @@
-//app.js
+/*这里出现了一个问题，我没解决：
+this.userInfoReadyCallback的问题。没有办法发送请求，不知道为什么。之前没有这种问题。
+我在commit时会再开一个branch，避免污染代码。
+*/
 
 App({
   onLaunch: function () {
@@ -22,7 +25,6 @@ App({
             }, fail: ()=>{
               this.globalData.user_id = wx.getStorageSync('user_id');
               this.globalData.token = wx.getStorageSync('token');
-              // and hope the token works.
             }
           })
         }
@@ -30,7 +32,22 @@ App({
       fail: ()=> {
         this.globalData.user_id = wx.getStorageSync('user_id');
         this.globalData.token = wx.getStorageSync('token');}
-    })
+    });
+    userInfoReadyCallback: res => {
+      console.log(4);
+      wx.request({
+        url: this.globalData.domain + '/mina_api/get_info',
+        data: {
+          user_info: res.userInfo
+        }, header: {
+          "Content-Type": "application/json"
+        },
+        success: res => {
+          console.log(res);
+          this.globalData.me = res.data.me;
+        }
+      })
+    };
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -38,21 +55,10 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              
               this.globalData.userInfo = res.userInfo
               if (this.userInfoReadyCallback) {
-                res =>{
-                  wx.request({
-                    url: this.globalData.domain +  '/main_api/get_info',
-                    data:{
-                      user_info:this.globalData.user_info
-                    }, header: {
-                      "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    success:res=>{
-                      console.log(res);
-                    }
-                  })
-                }
+                  this.userInfoReadyCallback(res);
               }
             }
           })
@@ -64,6 +70,12 @@ App({
     userInfo: null,
     domain:'http://localhost:5000',
     token:null,
-    user_id:null
+    user_id:null,
+    me:{
+      name:null,
+      student_id:null,
+      school_id:null
+    }
   }
 })
+

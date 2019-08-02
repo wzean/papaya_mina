@@ -19,6 +19,7 @@ Page({
   }
   ,
   submit:function(e){
+    if(!this.data.reply){return;}
     wx.request({
       url: app.globalData.domain + '/mina_api/reply',
       data:{
@@ -30,6 +31,7 @@ Page({
       header: { "Content-Type": "application/json"},
       success:res=>{
         console.log(res);
+        wx.navigateBack();
       }
     })
   }
