@@ -1,9 +1,43 @@
-<text>提问</text>
-<text>标题</text>
-<input style='border-style:solid;border-width:0.1rpx' placeholder='标题（必填）' bindblur='get_title'></input>
-<text>详细描述</text>
-<textarea style='border-style:solid;border-width:0.1rpx' placeholder='详细描述一下你的问题（可不填）' bindblur='get_body'></textarea>
-<switch bindchange='set_urgent'>紧急(遵守公序良俗，不是十万火急，不要选)</switch>
-<view></view>
-<!-->todo:使用editor标签来定义微信内置的富文本编辑器<-->
-<button bindtap='submit'>提交</button>
+<view class='container1'>
+
+  <view>
+    <text class='font1'>提问标题</text>
+  </view>
+
+  <view class='inputView'>
+    <input class='input' placeholder='输入标题（必填）' bindblur='get_title'></input>
+  </view>
+  
+  <view>
+    <text class='font1'>详细描述</text>
+  </view>
+
+  <view class='inputareaView'>
+    <textarea class='inputarea' placeholder='详细描述一下你的问题（选填）' bindblur='get_body'></textarea>
+  </view>
+  
+  <view>
+    <switch class='font2' bindchange='set_urgent'>标记为紧急</switch>
+  </view>
+
+  <view class='container2'>
+
+    <view>
+      <text class='font3'>注意事项：请遵守公序良俗，不是十万火急，请不要选择上面的按钮</text>
+    </view>
+  </view>
+
+  <view class='container2'>
+    <view class='buttonView'>
+      <button bindtap='submit'>提交</button>
+    </view>
+  
+    
+  </view>
+</view>
+
+
+
+
+
+<!--备注后期实现功能 @ 、图片插入 、发送语音 、发送视频-->

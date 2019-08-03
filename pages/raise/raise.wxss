@@ -1,1 +1,74 @@
 /* pages/raise/raise.wxss */
+.container1{  /**此处定义flex布局中的container容器，用来实现小程序页面的基本布局**/
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: space-around; /**自适应的关键**/
+  padding: 20rpx 80rpx 20rpx 80rpx; /**备忘：Margin(外边距)、Border(边框) Padding(内边距)、Content(内容)**/
+  box-sizing: border-box;
+  position:absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+}
+.container2{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  align-items: center; 
+  justify-content: space-around; /**自适应的关键**/
+  padding: 20rpx 40rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+.inputView{ /**输入框样式**/
+    width:100%;
+    height: 30px;
+    text-align: center;
+    align-items: center;
+}
+.inputareaView{ /**输入框样式**/
+    width:100%;
+    height: 250px;
+    text-align: center;
+    align-items: center;
+}
+.input{ /**输入**/
+  color:black;
+  height: 30px;
+  width:100%;
+  font-size:30rpx;
+  text-align:left;
+  border:  1px solid black;
+  border-radius: 5px;
+}
+.inputarea{ /**输入**/
+  color:black;
+  height:250px;
+  width: 100%;
+  font-size:30rpx;
+  text-align:left;
+  border:  1px solid black;
+  border-radius: 5px;
+  padding-top: 4px;
+}
+.font1{
+  font-weight:bold;
+  color: black;
+  font-size:50rpx;
+}
+.font2{
+  color: black;
+  font-size:16px;
+}
+.font3{
+  color: grey;
+  font-style:italic;
+  font-size:14px;
+  text-align: center;
+}
+.buttonView{ /**按钮的view样式**/
+  width:50%;
+  margin-top:20px;
+  height: 50px;
+}

@@ -68,7 +68,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    domain:'http://localhost:5000',
+    domain:'https://hzflasker.pythonanywhere.com',
     token:null,
     user_id:null,
     me:{

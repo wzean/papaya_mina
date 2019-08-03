@@ -1,3 +1,23 @@
-<text>回复</text>
-<textarea placeholder='你的答案' bindblur='get_reply'></textarea>
-<button bindtap='submit'>提交</button>
+<view class='container1'>
+
+  <view>
+    <text class='font1'>你的回答</text>
+  </view>
+
+
+
+  <view class='inputareaView'>
+      <textarea class='inputarea' placeholder='请输入你的回答' bindblur='get_reply'></textarea>
+    </view>
+
+  <view class='container2'>
+
+    <view class='buttonView'>
+      <button bindtap='submit'>提交</button>
+    </view>
+  
+  </view>
+
+</view>
+
+<!--添加匿名？-->
