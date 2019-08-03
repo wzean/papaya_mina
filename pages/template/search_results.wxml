@@ -1,6 +1,6 @@
 <template name="search_results">
 <block wx:for="{{result_array}}">
-  <button id='{{item.id}}' bindtap='get_post'>
+  <button id='{{item.id}}' bindtap='get_post' bindlongtap='delete_record'>
   <view style='font-family:Consolas'>{{item.title}}</view>
   <view style='font-size:14px;color:grey'>{{item.body}}</view>
   </button>

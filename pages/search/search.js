@@ -38,7 +38,6 @@ Page({
   },
   get_post:function(e){
     console.log(e.currentTarget.id);
-    //var id = e.id;
     wx.navigateTo({
       url: '../post/post?post_id=' + e.currentTarget.id
     })
