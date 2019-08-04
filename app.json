@@ -9,7 +9,8 @@
     "pages/post/post",
     "pages/reply/reply",
     "pages/modify/modify",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/personal/personal"
   ],
   "tabBar": {
     "list": [
