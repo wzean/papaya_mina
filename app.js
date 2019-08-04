@@ -24,6 +24,11 @@ App({
               wx.setStorageSync('token',res.data.token);
               this.globalData.user_id = res.data.user_id;
               this.globalData.token = res.data.token;
+              if(res.data.status == 2){// new user, complete information
+                wx.navigateTo({
+                  url: '../personal/personal'
+                });
+              }
             }, fail: ()=>{
               this.globalData.user_id = wx.getStorageSync('user_id');
               this.globalData.token = wx.getStorageSync('token');

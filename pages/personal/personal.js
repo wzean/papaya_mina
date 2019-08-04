@@ -1,66 +1,41 @@
-// pages/personal/personal.js
+const app = getApp();
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    name:null,
+    student_id:null,
+    class_id:null
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  get_name:function(e){
+    console.log(e.detail.value);
+    this.setData({name:e.detail.value});
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  get_student_id:function(e){
+    this.setData({ student_id: e.detail.value });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  get_class_id: function (e){
+    this.setData({ class_id: e.detail.value });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  commit: function (e){
+    if(this.data.name && this.data.student_id && this.data.class_id){
+      console.log(this.data);
+      app.globalData.me = this.data;
+      wx.request({
+        url: app.globalData.domain +  '/mina_api/modify_user_info',
+        data:{
+          user_id:app.globalData.user_id,
+          token:app.globalData.token,
+          me:this.data
+        },
+        header: { "Content-Type": "application/x-www-form-urlencoded"},
+        success:res=>{
+          console.log(res);
+          wx.navigateBack();
+        }
+      })
+    }
   }
+ 
 })

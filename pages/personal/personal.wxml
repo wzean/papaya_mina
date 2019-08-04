@@ -1,4 +1,4 @@
-<!--修改、完善用户的信息。在数据库中，未完善信息的用户标记为status=3，不允许提问和回答-->
+<!--修改、完善用户的信息。在数据库中，未完善信息的用户标记为status=2，不允许提问和回答-->
 <view>完善用户信息</view>
 <input bindblur='get_name' placeholder='请输入姓名'>姓名</input>
 <input bindblur='get_student_id' placeholder='请输入学工号'>学工号</input>

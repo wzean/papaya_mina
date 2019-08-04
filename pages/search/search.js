@@ -1,8 +1,6 @@
-
 const app = getApp();
 
 Page({
-
   data: {
     disabled:true,
     search_words:"",
@@ -45,10 +43,5 @@ Page({
   ,
   onReachBottom:function(){
     //try to get next page. make a new request.
-  },
-  onReady: () =>{ app.userInfoReadyCallback = res => {
-    console.log(5);
-    console.log(res);
-    
-  }}
+  }
 })
