@@ -1,0 +1,3 @@
+<text>+我的发现</text>
+<view>发布我的发现:建议做法:{{'\n'}}【分类】一句话概述自己的中心。详细描述...</view>
+<textarea placeholder='你的发现...' bindinput='contain_num'></textarea>

@@ -22,8 +22,10 @@ App({
               console.log(res);
               wx.setStorageSync('user_id',res.data.user_id);
               wx.setStorageSync('token',res.data.token);
+              wx.setStorageSync('status',res.data.status);
               this.globalData.user_id = res.data.user_id;
               this.globalData.token = res.data.token;
+              this.globalData.status = res.data.status;
               if(res.data.status == 2){// new user, complete information
                 wx.navigateTo({
                   url: '../personal/personal'
