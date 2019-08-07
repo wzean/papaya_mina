@@ -4,6 +4,7 @@
 <text style='font-size:10px;color:grey'>asked by:{{post.user.nickname}}</text>
 <view></view>
 <text style='font-size:15px;color:grey'>{{post.body}}</text>
+<button id="{{post.id}}" bindtap='censor'>举报</button>
 <view>----------------------------------</view>
 <view>回答</view>
 
@@ -11,6 +12,7 @@
   <view>---------------------------------</view>
   <text style='font-size:10px;color:grey'>user:{{item.user.nickname}}{{'\n'}}</text>
   <text style='font-size:15px;color:grey'>{{item.body}}</text>
+  <button id="{{item.id}}" bindtap='censor'>举报</button>
 </block>
 
 <button bindtap='answer'>我来回答</button>

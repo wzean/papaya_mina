@@ -11,7 +11,8 @@
     "pages/modify/modify",
     "pages/my/my",
     "pages/personal/personal",
-    "pages/add_find/add_find"
+    "pages/add_find/add_find",
+    "pages/censor/censor"
   ],
   "tabBar": {
     "list": [

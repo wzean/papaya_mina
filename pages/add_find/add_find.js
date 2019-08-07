@@ -3,6 +3,7 @@ const app = getApp();
 
 Page({
   data: {
+    image_url:null
 
   },
 
@@ -16,7 +17,8 @@ Page({
     // fyi, no more than 9 pictures.
     console.log(e);
   },
-  add_pic:e=>{
+  add_pic:function(e){
+    var that = this;
     wx.chooseImage({
       count:1,
       sizeType:['compressed'],
@@ -31,9 +33,14 @@ Page({
           },
           formData:{
             'user_id':app.globalData.user_id,
-            token:app.globalData.token
+            'token':app.globalData.token
           },
           success:res=>{
+            
+            e = JSON.parse(res.data);
+            console.log(e);
+            that.setData({image_url:app.globalData.domain + e.url})
+
             // save the iamge id and url somewhere for a find comit.
           }
         })

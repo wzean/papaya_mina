@@ -1,0 +1,6 @@
+<view>举报</view>
+<view style='font-size:13px;color:grey'>北航人的光荣传统。俗称50w按钮。</view>
+<view>请输入您举报的理由:</view>
+<input placeholder='在这里输入您举报的理由' bindconfirm='set_text'></input>
+<!--暂时用input,因为PC端input可以模拟bindconfirm,而textarea不能,为了开发方便,之后可以直接换过来的。-->
+<button bindtap='submit'>提交</button>

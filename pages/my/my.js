@@ -13,10 +13,11 @@ Page({
     title:null,
     type:{"q":"问题","a":"回答","msg":"消息"},
     result_array:null,
-    page:1
+    page:1,
+    cur_type:null
   },
   onLoad: function (options) {
-    this.setData({title:this.data.type[options.type]});//拿到类型
+    this.setData({title:this.data.type[options.type],cur_type:options.type});//拿到类型
     wx.request({
       url: app.globalData.domain +  '/mina_api/my',
       data: { type: options.type, user_id: app.globalData.user_id, token: app.globalData.token, page: this.data.page},
@@ -29,7 +30,8 @@ Page({
       }
     })
   },
-  get_post:e=>{
+  get_post:function(e){
+    if(this.data.cur_type=='msg'){return;}
     console.log(e);
     wx.navigateTo({
       url: '../post/post?post_id=' + e.target.id

@@ -30,6 +30,11 @@ Page({
       header: { "Content-Type": "application/json"},
       success:res=>{
         console.log(res);
+        wx.navigateBack();
+        wx.showToast({
+          title: '回答成功',
+          duration:1500
+        })
       }
     })
   }

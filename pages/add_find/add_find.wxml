@@ -3,5 +3,5 @@
 <textarea placeholder='你的发现...' bindinput='contain_num'></textarea>
 
 <button bindtap='add_pic'>添加一张图片</button>
-<image src="{{image_url}}"></image>
+<image src="{{image_url}}" mode='widthFix' style='width:200px'></image>
 <button bindtap='commit'>发布你的发现</button>

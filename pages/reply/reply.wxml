@@ -7,7 +7,7 @@
 
 
   <view class='inputareaView'>
-      <textarea class='inputarea' placeholder='请输入你的回答' bindblur='get_reply'></textarea>
+      <input class='inputarea' placeholder='请输入你的回答' bindconfirm='get_reply'></input>
     </view>
 
   <view class='container2'>

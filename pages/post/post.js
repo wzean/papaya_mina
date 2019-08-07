@@ -23,5 +23,13 @@ Page({
     wx.navigateTo({
       url:  '../reply/reply?post_id='+this.data.post.id
     })
+  },
+  censor:function(e){
+    //举报
+    console.log(e);
+    wx.navigateTo({
+      url: '../censor/censor?id=' + e.target.id
+    })
+    
   }
 })

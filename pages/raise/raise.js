@@ -36,7 +36,12 @@ Page({
       
       success:res=>{
         console.log(res);
-        console.log(data);
+        //console.log(data);
+        wx.navigateBack();
+        wx.showToast({
+          title: '提问成功',
+          duration:1500
+        })
       }
     })
   }
