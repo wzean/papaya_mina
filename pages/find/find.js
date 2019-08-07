@@ -25,7 +25,8 @@ get_find_universal: (type, page, kw, fuid) => {
 Page({
   data: {
     items:[],
-    page:1
+    page:1,
+    domain: app.globalData.domain
   }, 
   onLoad: function (options) {
     wx.request({
@@ -52,5 +53,10 @@ Page({
     wx.navigateTo({
       url: '../add_find/add_find'
     })
+  },
+  onShow:function(){
+    this.onLoad();
   }
+
+  
 })

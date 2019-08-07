@@ -8,4 +8,5 @@
   <image  style='width:30px;height:30px' src="{{item.icon}}"></image>
   <text style='font-size:13px'>{{item.user}}</text>
   <view style='font-size:15px'>{{item.text}}</view>
+  <image wx:if="{{ item.image_url}}" style='width:250px' mode='widthFix' src="{{domain + item.image_url}}"></image>
 </block>
