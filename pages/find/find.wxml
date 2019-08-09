@@ -1,6 +1,6 @@
 <view>发现</view>
 <view style='font-size:14px'>发现是依托小程序的全校信息发布平台，支持关键字搜索。建议使用场景为:失物招领/寻物/社团活动宣传/招新/寻求帮手/...</view>
-<input bindinput='get_find' placeholder='发现...(手机上键盘右下角的回车显示为确认，电脑上手动回车)'></input>
+<input bindconfirm='get_find' placeholder='发现...(手机上键盘右下角的回车显示为确认，电脑上手动回车)'></input>
 <button bindtap='add_find'>+我的发现(临时放这儿)</button>
 
 <block wx:for="{{items}}">
@@ -8,5 +8,5 @@
   <image  style='width:30px;height:30px' src="{{item.icon}}"></image>
   <text style='font-size:13px'>{{item.user}}</text>
   <view style='font-size:15px'>{{item.text}}</view>
-  <image wx:if="{{ item.image_url}}" style='width:250px' mode='widthFix' src="{{domain + item.image_url}}"></image>
+  <image wx:if="{{ item.image_url}}" style='width:300px' mode='widthFix' src="{{domain + item.image_url}}"></image>
 </block>

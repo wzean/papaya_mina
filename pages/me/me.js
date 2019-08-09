@@ -21,6 +21,9 @@ Page({
   kill_find:e=>{
     console.log(e);
     //手动狗头。名字叫kill，因为确实只能kill。但是写出来却叫管理:)
+    wx.navigateTo({
+      url: '../my_find/my_find'
+    })
   },
   console:e=>{
     //secret stash  a.k.a. 私货

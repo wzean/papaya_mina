@@ -1,3 +1,4 @@
 <view>我的{{title}}</view>
 <import src='../template/search_results'/>
 <template is="search_results" data="{{result_array}}"/>
+<view style='color:grey'>长按可以删除</view>

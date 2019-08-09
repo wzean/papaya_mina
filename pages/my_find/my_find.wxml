@@ -1,0 +1,10 @@
+<view>我的发现</view>
+<block wx:for="{{items}}">
+  <view>---------------------------------</view>
+  <image  style='width:30px;height:30px' src="{{item.icon}}"></image>
+  <text style='font-size:13px'>{{item.user}}</text>
+  <view style='font-size:15px'>{{item.text}}</view>
+  <image wx:if="{{ item.image_url}}" style='width:300px' mode='widthFix' src="{{domain + item.image_url}}"></image>
+  <navigator id="{{item.id}}" bindtap='kill' style='color:grey;font-size:13px'>删除这条发现</navigator>
+</block>
+

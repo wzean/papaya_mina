@@ -1,4 +1,4 @@
-<image src="{{userInfo.avatarUrl}}"></image>
+<image src="{{userInfo.avatarUrl}}" style='width:100px' mode='widthFix'></image>
 <view>微信昵称:{{userInfo.nickName}}</view>
 <view>姓名:{{me.name}}</view>
 <view>学号:{{me.student_id}}</view>

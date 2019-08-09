@@ -1,6 +1,6 @@
 <view>搜索</view>
 <input style='border-style:solid;border-width:0.1rpx' bindinput='search_input' placeholder='请输入关键字' bindconfirm='confirm'></input>
 <button disabled='{{disabled}}' bindtap='search_execute'>搜索</button>
-
+<view>演示项目:1.中文搜索 2.英文搜索 3.提问 4.回答 5.举报 6.删除 7.发现及其搜索与删除</view>
 <import src='../template/search_results'/>
 <template is="search_results" data="{{result_array}}"/>
