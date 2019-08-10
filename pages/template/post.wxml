@@ -1,10 +1,9 @@
 <template name="post">
 <text style='font-family:Consolas'>{{post.title}}</text>
 <view></view>
-<text style='font-size:10px;color:grey'>asked by:{{post.user.nickname}}</text>
-<view></view>
-<text style='font-size:15px;color:grey'>{{post.body}}</text>
-<button id="{{post.id}}" bindtap='censor'>举报</button>
+<text style='font-size:10px;color:grey'>asked by:{{post.user.nickname}}</text><text>👀{{post.view_num}}</text>
+<view style='font-size:15px;color:grey'>{{post.body}}</view>
+<navigator id="{{post.id}}" bindtap='censor'>举报</navigator>
 <view>----------------------------------</view>
 <view>回答</view>
 
@@ -12,7 +11,9 @@
   <view>---------------------------------</view>
   <text style='font-size:10px;color:grey'>user:{{item.user.nickname}}{{'\n'}}</text>
   <text style='font-size:15px;color:grey'>{{item.body}}</text>
-  <button id="{{item.id}}" bindtap='censor'>举报</button>
+
+  <navigator id="{{item.id}}" bindtap='like'>👍 {{item.like_num}}</navigator>
+  <navigator id="{{item.id}}" bindtap='censor'>举报</navigator>
 </block>
 
 <button bindtap='answer'>我来回答</button>

@@ -7,6 +7,7 @@ Page({
     rq_url:app.globalData.domain + '/mina_api/search_post',
     result_array:[],
     page:1,
+    tips:null
   },
   search_input:function(e){
     var content = e.detail.value;

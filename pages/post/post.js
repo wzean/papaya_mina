@@ -1,8 +1,8 @@
 const app = getApp();
 Page({
   data: {
-    post:null
-
+    post:null,
+    likes:[]
   },
   onLoad: function (options) {
     console.log(options.post_id);
