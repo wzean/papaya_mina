@@ -1,2 +1,4 @@
 <import src='../template/post'/>
 <template is="post" data="{{post}}"/>
+
+<rich-text nodes="{{nodes}}"></rich-text>

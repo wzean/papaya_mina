@@ -27,8 +27,9 @@ App({
               this.globalData.token = res.data.token;
               this.globalData.status = res.data.status;
               if(res.data.status == 2){// new user, complete information
+              console.log(22);
                 wx.navigateTo({
-                  url: '../personal/personal'
+                  url: '/pages/personal/personal'
                 });
               }
             }, fail: ()=>{
@@ -50,7 +51,6 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log(4);
               this.globalData.userInfo = res.userInfo;
               wx.request({
                 url: this.globalData.domain + '/mina_api/get_info',

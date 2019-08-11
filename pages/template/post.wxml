@@ -2,7 +2,12 @@
 <text style='font-family:Consolas'>{{post.title}}</text>
 <view></view>
 <text style='font-size:10px;color:grey'>asked by:{{post.user.nickname}}</text><text>👀{{post.view_num}}</text>
+<!-->
 <view style='font-size:15px;color:grey'>{{post.body}}</view>
+<-->
+
+
+
 <navigator id="{{post.id}}" bindtap='censor'>举报</navigator>
 <view>----------------------------------</view>
 <view>回答</view>

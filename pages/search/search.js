@@ -54,7 +54,7 @@ Page({
         user_id: app.globalData.user_id,
         word: this.data.search_words,
         token: app.globalData.token,
-        page: this.data.page
+        page: this.data.page + 1
       },
       header: {
         "Content-Type": "application/json"

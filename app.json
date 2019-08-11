@@ -14,7 +14,10 @@
     "pages/add_find/add_find",
     "pages/censor/censor",
     "pages/my_find/my_find",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/raise_with_pic/raise_with_pic",
+    "pages/render_pic_post/render_pic_post",
+    "pages/test/test"
   ],
   "tabBar": {
     "list": [
@@ -31,13 +34,13 @@
         "selectedIconPath": "static/question_.png"
       },
       {
-        "pagePath": "pages/find/find",
+        "pagePath": "pages/test/test",
         "text": "发现",
         "iconPath": "static/find.png",
         "selectedIconPath": "static/find_.png"
       },
       {
-        "pagePath": "pages/me/me",
+        "pagePath": "pages/raise_with_pic/raise_with_pic",
         "text": "我",
         "iconPath": "static/me.png",
         "selectedIconPath": "static/me_.png"

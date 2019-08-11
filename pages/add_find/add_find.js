@@ -24,7 +24,7 @@ Page({
       sizeType:['compressed'],
       sourceType:['album'],
       success: function(res) {
-        var tempFilePaths = res.tempFilePaths
+        var tempFilePaths = res.tempFilePaths;
         wx.uploadFile({
           url: app.globalData.domain + '/upload/find_pic',
           filePath: tempFilePaths[0],
@@ -36,6 +36,7 @@ Page({
             'token':app.globalData.token
           },
           success:res=>{
+            console.log(res);
             e = JSON.parse(res.data);
             console.log(e);
             that.setData({image_url:app.globalData.domain + e.url,btn_text:"更改图片",image_id:e.f_image_id});

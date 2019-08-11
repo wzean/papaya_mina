@@ -2,7 +2,8 @@ const app = getApp();
 Page({
   data: {
     post:null,
-    post_id:null
+    post_id:null,
+    nodes:[]
   },
   onLoad: function (options) {
     console.log(options.post_id);
@@ -16,7 +17,9 @@ Page({
       },
       success:res=>{
         console.log(res.data);
-        this.setData({post:res.data});
+        var dom = JSON.parse(res.data.body);
+        console.log(dom);
+        this.setData({post:res.data,nodes:dom});
       }
     })
   },
