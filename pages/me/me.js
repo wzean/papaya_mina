@@ -30,5 +30,11 @@ Page({
     //console requires status == 9
     //Were I to give other admins status == 8 ... :)
     console.log(e);
+  },
+  feedback:e=>{
+    console.log(e);
+    wx.navigateTo({
+      url: '../feedback/feedback'
+    })
   }
 })

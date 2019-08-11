@@ -13,7 +13,8 @@
     "pages/personal/personal",
     "pages/add_find/add_find",
     "pages/censor/censor",
-    "pages/my_find/my_find"
+    "pages/my_find/my_find",
+    "pages/feedback/feedback"
   ],
   "tabBar": {
     "list": [

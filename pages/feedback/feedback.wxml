@@ -1,0 +1,11 @@
+<view>反馈</view>
+<view>您要反馈的问题类型:</view>
+<radio-group bindchange='get_type'>
+<radio checked='1' id="bug">bug </radio>
+<radio id="style">外观 </radio>
+<radio id="function">功能 </radio>
+<radio id='management'>管理 </radio>
+<radio id="else">其他 </radio>
+</radio-group>
+<input bindconfirm='get_text'>您的宝贵建议</input>
+<button bindtap='commit'>提交</button>
