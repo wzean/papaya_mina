@@ -9,3 +9,4 @@
 <button bindtap='kill_find'>管理我的发现</button>
 <button wx:if="{{can_use_console}}" bindtap='console'>console</button>
 <button bindtap='feedback'>反馈</button>
+<button bindtap='about'>关于</button>

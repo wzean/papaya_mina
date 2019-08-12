@@ -1,0 +1,7 @@
+<!--pages/about/about.wxml-->
+<text>pages/about/about.wxml</text>
+<view>关于</view>
+
+<view>北航知道</view>
+
+<view>北航知道是..........反正这里是一些介绍我们的内容...</view>

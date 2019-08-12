@@ -36,5 +36,11 @@ Page({
     wx.navigateTo({
       url: '../feedback/feedback'
     })
+  },
+  about:e=>{
+    console.log(e);
+    wx.navigateTo({
+      url: '../about/about',
+    })
   }
 })

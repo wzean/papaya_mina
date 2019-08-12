@@ -17,7 +17,8 @@
     "pages/feedback/feedback",
     "pages/raise_with_pic/raise_with_pic",
     "pages/render_pic_post/render_pic_post",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/about/about"
   ],
   "tabBar": {
     "list": [
@@ -34,13 +35,13 @@
         "selectedIconPath": "static/question_.png"
       },
       {
-        "pagePath": "pages/test/test",
+        "pagePath": "pages/find/find",
         "text": "发现",
         "iconPath": "static/find.png",
         "selectedIconPath": "static/find_.png"
       },
       {
-        "pagePath": "pages/raise_with_pic/raise_with_pic",
+        "pagePath": "pages/me/me",
         "text": "我",
         "iconPath": "static/me.png",
         "selectedIconPath": "static/me_.png"
