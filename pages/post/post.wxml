@@ -1,10 +1,8 @@
 
 <text style='font-family:Consolas'>{{post.title}}</text>
 <view></view>
-<text style='font-size:10px;color:grey'>asked by:{{post.user.nickname}}</text><text>👀{{post.view_num}}</text>
-<!-->
-<view style='font-size:15px;color:grey'>{{post.body}}</view>
-<-->
+<image  style='width:30px;height:30px' src="{{post.user.icon}}"></image>
+<text style='font-size:12px;color:grey'>{{post.user.nickname}}</text><text>👀{{post.view_num}}</text>
 
 <rich-text nodes="{{nodes}}"></rich-text>
 
@@ -14,11 +12,15 @@
 
 <block wx:for="{{post.replies}}">
   <view>---------------------------------</view>
-  <text style='font-size:10px;color:grey'>user:{{item.user.nickname}}{{'\n'}}</text>
-  <text style='font-size:15px;color:grey'>{{item.body}}</text>
+  <image  style='width:30px;height:30px' src="{{item.user.icon}}"></image>
+  <text style='font-size:12px;color:grey'>{{item.user.nickname}}{{'\n'}}</text>
+
+
+  <rich-text nodes="{{item.dom}}"></rich-text>
 
   <navigator id="{{item.id}}.{{index}}" bindtap='like'>👍 {{item.like_num}}</navigator>
   <navigator id="{{item.id}}" bindtap='censor'>举报</navigator>
+  <navigator id="{{item.id}}" bindtap='reply'>回复</navigator>
 </block>
 
 <button bindtap='answer' wx:if="{{canIanswer}}">{{btn_text}}</button>

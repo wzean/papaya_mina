@@ -10,15 +10,15 @@
     "pages/reply/reply",
     "pages/modify/modify",
     "pages/my/my",
-    "pages/personal/personal",
+    
     "pages/add_find/add_find",
     "pages/censor/censor",
     "pages/my_find/my_find",
     "pages/feedback/feedback",
     "pages/raise_with_pic/raise_with_pic",
     "pages/render_pic_post/render_pic_post",
-    "pages/test/test",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/personal/personal"
   ],
   "tabBar": {
     "list": [

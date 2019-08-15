@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function () {
     this.setData({userInfo:app.globalData.userInfo,me:app.globalData.me});
-    if(app.globalData.status == 9){
+    if(app.globalData.status == 8){
       this.setData({"can_use_console":true});
     }
   },
@@ -30,6 +30,47 @@ Page({
     //console requires status == 9
     //Were I to give other admins status == 8 ... :)
     console.log(e);
+    wx.scanCode({
+      scanType:['qrCode'],
+      success:res=>{
+        console.log(res);
+        var uuid = res.result;
+        wx.request({
+          url: app.globalData.domain + '/mina_api/scan_get',
+          data:{
+            token:app.globalData.token,
+            user_id:app.globalData.user_id,
+            uuid:uuid
+          },
+          header:{
+            "Content-Type": "application/json"
+          },success:res=>{
+            console.log(res);
+            wx.showActionSheet({
+              itemList:['确认登陆'],
+              success:res=>{
+                console.log(res);
+                wx.request({
+                  url: app.globalData.domain + '/mina_api/scan_confirm',
+                  data:{
+                    token: app.globalData.token,
+                    user_id: app.globalData.user_id,
+                    uuid: uuid
+                  },
+                  success:res=>{
+                    console.log(res);
+                    wx.showToast({
+                      title: '确认成功',
+                    })
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
+
+    })
   },
   feedback:e=>{
     console.log(e);

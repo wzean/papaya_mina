@@ -1,4 +1,8 @@
 const app = getApp();
+
+var util = require('../../utils/util.js');
+
+
 Page({
   data: {
     post:null,
@@ -18,16 +22,26 @@ Page({
         post_id:options.post_id
       },
       success:res=>{
-        console.log(res.data);
-        var dom = JSON.parse(res.data.body);
-        console.log(dom);
-        this.setData({post:res.data,nodes:dom});
+        console.log(res);
+        const dom = JSON.parse(res.data.dom);
+        // parse dom for question
+        var nodes = util.parseDom(dom);
+        console.log(nodes);
+        // parse every answer
+        var postData = res.data;
+        console.log(postData)
+        for(let i = 0;i<postData.replies.length;i++){
+          
+          postData.replies[i].dom = util.parseDom( JSON.parse(  postData.replies[i].dom  ) );
+        }
+        this.setData({post:postData,nodes:nodes});
+        if (this.data.post.status == 3) { this.setData({ canIanswer: false }); return; };
+        if (this.data.post.user.id == app.globalData.user_id) {
+          this.setData({ btn_text: "关闭问题" });
+        }
       }
     });
-    if(this.data.post.status == 3){this.setData({canIanswer:false});return;};
-    if(this.data.post.user.id == app.globalData.user_id){
-      this.setData({btn_text:"关闭问题"});
-    }
+    
   },
   answer:function(e){
     if (this.data.post.user.id == app.globalData.user_id){
@@ -72,11 +86,17 @@ Page({
         post_id:e.target.id.split('.')[0]
       },
       success:res=>{
-        post.page_items[Number(e.target.id.split('.')[1])].like_num += 1;
+        var p = this.data.post
+        p.replies[Number(e.target.id.split('.')[1])].like_num += 1;
+        this.setData({post:p});
         wx.showToast({
           title: '点赞成功',duration:1500
         })
       }
     })
+  },
+  reply:function(e){
+    console.log(e);
+    //回复看来不重写是不行了
   }
 })

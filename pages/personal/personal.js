@@ -7,6 +7,7 @@ Page({
     class_id:null
   },
   onLoad: function (options) {
+    console.log(options);
   },
   get_name:function(e){
     console.log(e.detail.value);

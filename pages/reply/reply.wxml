@@ -1,23 +1,11 @@
-<view class='container1'>
+<view>回答：可以插入图片哦</view>
+<button bindtap='add_text' >插入文本框</button>
+<button bindtap='add_pic'>插入图片</button>
+<block wx:for='{{dom}}'>
+<textarea id="{{index}}" style='border-style:solid;border-width:0.1rpx' wx:if='{{item.type == "text"}}' id="{{index}}" placeholder='140字文本框' value='{{item.value}}' bindinput='on_edit_text'></textarea>
+<image wx:if="{{item.type == 'img'}}" id="{{index}}" src="{{item.value}}" mode='widthFix' style='width:250px'></image>
+<navigator wx:if="{{item}}" id="{{index}}" bindtap='delete_node'>删除</navigator>
+</block>
 
-  <view>
-    <text class='font1'>你的回答</text>
-  </view>
 
-
-
-  <view class='inputareaView'>
-      <input class='inputarea' placeholder='请输入你的回答' bindconfirm='get_reply'></input>
-    </view>
-
-  <view class='container2'>
-
-    <view class='buttonView'>
-      <button bindtap='submit'>提交</button>
-    </view>
-  
-  </view>
-
-</view>
-
-<!--添加匿名？-->
+<button bindtap='submit'>提交</button>

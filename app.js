@@ -28,9 +28,9 @@ App({
               this.globalData.status = res.data.status;
               if(res.data.status == 2){// new user, complete information
               console.log(22);
-                wx.navigateTo({
-                  url: '/pages/personal/personal'
-                });
+              wx.navigateTo({
+                url: '/pages/personal/personal',
+              })
               }
             }, fail: ()=>{
               this.globalData.user_id = wx.getStorageSync('user_id');

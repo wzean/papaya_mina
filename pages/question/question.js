@@ -63,7 +63,7 @@ Page({
   },
   raise:function(){
     wx.navigateTo({
-      url: '../raise/raise',
+      url: '../raise_with_pic/raise_with_pic',
     })
   },
   get_post: function (e) {

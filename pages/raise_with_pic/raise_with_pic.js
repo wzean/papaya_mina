@@ -6,7 +6,8 @@ Page({
     dom:[
       {type:'text',value:"这是自带的一个文本框"},
       ],
-      title:null
+      title:null,
+      is_urgent:false
   },
   add_text:function(e){
     console.log(e);
@@ -27,27 +28,9 @@ Page({
       sourceType: ['album'],
       success: function(res) {
         console.log(res);
-        var tempFilePaths = res.tempFilePaths;
-        wx.uploadFile({
-          url: app.globalData.domain + '/upload/post_pic',
-          filePath: tempFilePaths[0],
-          name: 'pic', header: {
-            "Content-Type": "multipart/form-data"//记得设置
-          },
-          formData: {
-            'user_id': app.globalData.user_id,
-            'token': app.globalData.token
-          },
-          success: res => {
-            console.log(res);
-            e = JSON.parse(res.data);
-            console.log(e);
-            // e.pi_id : post_image_id
-            // e.url : post_image_url
-            that.setData({dom:that.data.dom.concat({type:'img',value: app.globalData.domain + e.url,pi_id:e.pi_id})});
-            // save the iamge id and url somewhere for a find commit.
-          }
-        })
+        var pic_local_path = res.tempFilePaths[0];
+        //现在要先缓存再上传了
+        that.setData({dom: that.data.dom.concat({ type: 'img', value: pic_local_path ,pi_id:null})});
       },
     });
   },
@@ -65,41 +48,80 @@ Page({
   },
   submit:function(e){
     //converting my dom to a wx-granted nodes
-    var nodes = [];
-    var used_ids = [];
-    const dom = this.data.dom;
-    for(let i = 0;i<dom.length;i++){
-      if(dom[i]){
-        if(dom[i].type=='text'){nodes[nodes.length] = {type:'text',text:dom[i].value};}
-        else if(dom[i].type=='img' ){nodes[nodes.length] = {name:'img',attrs:{src:dom[i].value,width:'300px'}};used_ids[used_ids.length]=dom[i].pi_id;}
+    const promise = new Promise((resolve,reject)=>{
+      var nodes = [];
+      var text = '';
+      var dom = this.data.dom;
+      for (let i = 0; i < dom.length; i++) {
+        if (dom[i]) {
+          if (dom[i].type == 'text') {
+            text += dom[i].value;
+            nodes[nodes.length] = dom[i];
+            if (i == dom.length - 1) {
+              console.log(nodes);
+              resolve({ msg: 'success', nodes: nodes, text: text });
+            }
+          } else if (dom[i].type == 'img') {
+            // upload the picture
+            wx.uploadFile({
+              url: app.globalData.domain + '/upload/post_pic',
+              filePath: dom[i].value,
+              name: 'pic',
+              header: {
+                "Content-Type": "multipart/form-data"//记得设置
+              },
+              formData: {
+                'user_id': app.globalData.user_id,
+                'token': app.globalData.token
+              },
+              success: res => {
+                console.log(res);
+                e = JSON.parse(res.data);
+                // 要记得把新的img_url给img
+                dom[i].value = app.globalData.domain + e.url;
+                nodes[nodes.length] = dom[i];
+                console.log('nodes', i, nodes);
+                if(i==dom.length-1){
+                  console.log(nodes);
+                  resolve({msg:'success',nodes:nodes,text:text});
+                }
+              }
+            })
+          }
+        }
       }
-    }
-    //var rd = {name:'div',children:nodes};
-    var body = JSON.stringify(nodes);
-    wx.request({
-      url: app.globalData.domain + '/mina_api/ask',
-      data:{
-        user_id:app.globalData.user_id,
-        token:app.globalData.token,
-        body:body,
-        used_ids:used_ids,
-        title:this.data.title,
-        is_urgent:false,
-        tags:''
-      },
-      header:{
-        "Content-Type": "application/json"
-      },
-      success:res=>{
-        console.log(res);
-        wx.showToast({
-          title: '发布成功',duration:1500
-        });
-        wx.navigateBack();
-      }
+    });
+    promise.then(res=>{
+      console.log(res);
+      const body = JSON.stringify(res.nodes);
+      console.log('body', body);
+      wx.request({
+        url: app.globalData.domain + '/mina_api/ask',
+        data: {
+          user_id: app.globalData.user_id,
+          token: app.globalData.token,
+          dom: body,
+          body: res.text,
+          title: this.data.title,
+          is_urgent: this.data.is_urgent,
+          tags: ''
+        },
+        header: {
+          "Content-Type": "application/json"
+        },
+        success: res => {
+          console.log(res);
+          wx.showToast({
+            title: '发布成功', duration: 1500
+          });
+          wx.navigateBack();
+        }
+      });
     })
-
-
+    
+  },
+  set_urgent:function(e){
+    this.setData({is_urgent:!this.data.is_urgent});
   }
 })
 
@@ -110,10 +132,15 @@ Page({
 我打算这样做这个东西:
 允许你插入两种节点到dom里面：
 1. {type:'text',value:"text in the textarea."}
-2. {type:'img',value:"url of the image",pi_id:(post_image_id) }
+2. {type:'img',value:"url of the image"}
 所以当你点击按钮插入一个text，dom里会加一个1,然后由于block是按dom渲染的，于是你就多了一个textarea
-如果你点击插入图片，那么会打开一个上传图片的页面，后端会返回这张图片的url和id
-但是会把图片记为status=0，提交时需要同时提交一个使用图片的id列表，把这些id标记为1
-status=0的图片每天早上4点会被删掉
+*/
+
+
+/*
+
+
+
+
 
 */

@@ -14,6 +14,22 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const parseDom = dom =>{
+  var nodes = [];
+  for(let i=0;i<dom.length;i++){
+    if(dom[i].type=='text'){
+      nodes = nodes.concat({type:'text',text:dom[i].value});
+    }else if(dom[i].type=='img'){
+      nodes = nodes.concat({name:'div',children:[{name:'img',attrs:{src:dom[i].value,width:'300px'}}]});
+    }
+  }
+  console.log(nodes);
+  return nodes;
+}
+
+
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  parseDom:parseDom
 }

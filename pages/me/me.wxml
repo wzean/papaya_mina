@@ -7,6 +7,6 @@
 <button id='a' bindtap='get_my'>查看我的回答</button>
 <button id='msg' bindtap='get_my'>我的消息</button>
 <button bindtap='kill_find'>管理我的发现</button>
-<button wx:if="{{can_use_console}}" bindtap='console'>console</button>
+<button wx:if="{{can_use_console}}" bindtap='console'>管理员扫码登录</button>
 <button bindtap='feedback'>反馈</button>
 <button bindtap='about'>关于</button>
