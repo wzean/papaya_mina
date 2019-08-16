@@ -10,3 +10,4 @@
 <button wx:if="{{can_use_console}}" bindtap='console'>管理员扫码登录</button>
 <button bindtap='feedback'>反馈</button>
 <button bindtap='about'>关于</button>
+<button open-type='getUserInfo' bindgetuserinfo='get_user_info_tap'>授权小程序使用你的头像和微信昵称</button>

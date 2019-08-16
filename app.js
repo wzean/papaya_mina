@@ -7,6 +7,7 @@ this.userInfoReadyCallback的问题。没有办法发送请求，不知道为什
 
 App({
   onLaunch: function () {
+    
     wx.login({
       success: res => {
         if(res.code){
@@ -68,6 +69,32 @@ App({
               }
             }
           )
+        }else if(!res.authSetting['scope.userInfo']){
+          wx.openSetting({
+            success:res=>{
+              console.log(res);
+            }
+          })
+        }else{
+          wx.getUserInfo({
+            success: res => {
+              this.globalData.userInfo = res.userInfo;
+              wx.request({
+                url: this.globalData.domain + '/mina_api/get_info',
+                data: {
+                  user_info: res.userInfo,
+                  user_id: wx.getStorageSync('user_id')
+                }, header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                success: res => {
+                  console.log(res);
+                  this.globalData.me = res.data.me;
+                }
+              });
+            }
+          }
+          )
         }
       }
     });
@@ -76,7 +103,7 @@ App({
     userInfo: null,
     pya_domain:"https://hzflasker.pythonanywhere.com",
     local_domain: 'http://127.0.0.1:5000',
-    domain: 'http://127.0.0.1:5000',
+    domain: 'https://zzstudios.cn',
     token:null,
     user_id:null,
     me:{

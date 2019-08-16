@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function () {
     this.setData({userInfo:app.globalData.userInfo,me:app.globalData.me});
-    if(app.globalData.status == 8){
+    if(app.globalData.status >= 8){
       this.setData({"can_use_console":true});
     }
   },
@@ -83,5 +83,24 @@ Page({
     wx.navigateTo({
       url: '../about/about',
     })
+  },
+  get_user_info_tap:res=>{
+    console.log(res);
+    app.globalData.userInfo = res.detail.userInfo;
+    wx.request({
+      url: app.globalData.domain + '/mina_api/get_info',
+      data: {
+        user_info: res.detail.userInfo,
+        user_id: wx.getStorageSync('user_id')
+      }, header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: res => {
+        console.log(res);
+        app.globalData.me = res.data.me;
+      }
+    });
+
+
   }
 })

@@ -57,10 +57,6 @@ Page({
           if (dom[i].type == 'text') {
             text += dom[i].value;
             nodes[nodes.length] = dom[i];
-            if (i == dom.length - 1) {
-              console.log(nodes);
-              resolve({ msg: 'success', nodes: nodes, text: text });
-            }
           } else if (dom[i].type == 'img') {
             // upload the picture
             wx.uploadFile({
