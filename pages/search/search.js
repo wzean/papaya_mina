@@ -47,7 +47,7 @@ Page({
   ,
   onReachBottom:function(){
     //try to get next page. make a new request.
-    if(this.data.page >= this.data.total_pages){return;}
+    if (this.data.page >= this.data.total_pages) { return; }
     wx.request({
       url: this.data.rq_url,
       data: {

@@ -48,20 +48,25 @@ Page({
   },
   submit:function(e){
     //converting my dom to a wx-granted nodes
-    const promise = new Promise((resolve,reject)=>{
-      var nodes = [];
-      var text = '';
+    // first upload the picture vis the promise
+    // then upload the whole thing
+
+
+    // 得像过筛子一样，先把所有的img都筛出来
+    // 要不然这玩意就不稳
+    // 异步操作都不稳
+    const pic_promise = new Promise((resolve,reject)=>{
+
       var dom = this.data.dom;
-      for (let i = 0; i < dom.length; i++) {
-        if (dom[i]) {
-          if (dom[i].type == 'text') {
-            text += dom[i].value;
-            nodes[nodes.length] = dom[i];
-          } else if (dom[i].type == 'img') {
-            // upload the picture
+      var img_index  =[];
+      for(let i = 0 ;i<dom.length;i++){
+        if(dom[i] && dom[i].type=='img')img_index.push(i);
+      }
+      if (!img_index.length) { resolve({ msg: 'success', dom: dom });}
+      for (let j = 0; j < img_index.length; j++) {
             wx.uploadFile({
               url: app.globalData.domain + '/upload/post_pic',
-              filePath: dom[i].value,
+              filePath: dom[img_index[j]].value,
               name: 'pic',
               header: {
                 "Content-Type": "multipart/form-data"//记得设置
@@ -74,47 +79,52 @@ Page({
                 console.log(res);
                 e = JSON.parse(res.data);
                 // 要记得把新的img_url给img
-                dom[i].value = app.globalData.domain + e.url;
-                nodes[nodes.length] = dom[i];
-                console.log('nodes', i, nodes);
-                if(i==dom.length-1){
-                  console.log(nodes);
-                  resolve({msg:'success',nodes:nodes,text:text});
+                dom[img_index[j]].value = app.globalData.domain + e.url;
+                if(j==img_index.length-1){
+                  resolve({msg:'success',dom:dom});
                 }
               }
-            })
-          }
+            });
+          }});
+    pic_promise.then(res => {
+      console.log(res);
+      var nodes = [];
+      var text = '';
+      const dom = res.dom;
+      for (let i = 0; i < dom.length; i++) {
+        if (dom[i].type == 'text') {
+          text += ' ' + dom[i].value;
+          nodes[nodes.length] = dom[i];
+        }
+        else if (dom[i].type == 'img') {
+          nodes[nodes.length] = dom[i];
         }
       }
-    });
-    promise.then(res=>{
-      console.log(res);
-      const body = JSON.stringify(res.nodes);
-      console.log('body', body);
-      wx.request({
-        url: app.globalData.domain + '/mina_api/ask',
-        data: {
-          user_id: app.globalData.user_id,
-          token: app.globalData.token,
-          dom: body,
-          body: res.text,
-          title: this.data.title,
-          is_urgent: this.data.is_urgent,
-          tags: ''
-        },
-        header: {
-          "Content-Type": "application/json"
-        },
-        success: res => {
-          console.log(res);
-          wx.showToast({
-            title: '发布成功', duration: 1500
-          });
-          wx.navigateBack();
-        }
+        const body = JSON.stringify(nodes);
+        console.log('body', body);
+        wx.request({
+          url: app.globalData.domain + '/mina_api/ask',
+          data: {
+            user_id: app.globalData.user_id,
+            token: app.globalData.token,
+            dom: body,
+            body: text,
+            title: this.data.title,
+            is_urgent: this.data.is_urgent,
+            tags: ''
+          },
+          header: {
+            "Content-Type": "application/json"
+          },
+          success: res => {
+            console.log(res);
+            wx.showToast({
+              title: '发布成功', duration: 1500
+            });
+            wx.navigateBack();
+          }
+        });
       });
-    })
-    
   },
   set_urgent:function(e){
     this.setData({is_urgent:!this.data.is_urgent});
@@ -130,13 +140,4 @@ Page({
 1. {type:'text',value:"text in the textarea."}
 2. {type:'img',value:"url of the image"}
 所以当你点击按钮插入一个text，dom里会加一个1,然后由于block是按dom渲染的，于是你就多了一个textarea
-*/
-
-
-/*
-
-
-
-
-
 */

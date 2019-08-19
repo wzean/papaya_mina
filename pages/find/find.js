@@ -44,7 +44,7 @@ Page({
       },
       success: res => {
         console.log(res);
-        this.setData({ items: res.data.items});
+        this.setData({ items: res.data.items , total_pages:res.data.pages});
       }, fail: res => { console.log(res); }
     })
   },
@@ -52,12 +52,12 @@ Page({
     if(e.detail.value==''){this.setData({type:'common'});this.onLoad();return;};
     var kw = e.detail.value;
     console.log(e);
-    this.setData({type:'user'});//used for reach bottom event.
+    this.setData({type:'keyword'});//used for reach bottom event.
     wx.request({
       url: app.globalData.domain + '/mina_find/get_find_pagination', // common for get newest.
       data: {
         type: 'keyword',
-        page: this.data.page,
+        page: 1,
         user_id: app.globalData.user_id,
         token: app.globalData.token,
         keyword: kw,
@@ -79,6 +79,48 @@ Page({
   },
   onShow:function(){
     this.onLoad();
+  },
+  onReachBottom:function(){
+    if (this.data.page >= this.data.total_pages) { return; }
+    if (this.data.type == 'common'){
+      wx.request({
+        url: app.globalData.domain + '/mina_find/get_find_pagination', // common for get newest.
+        data: {
+          type: 'common',
+          page: this.data.page + 1,
+          user_id: app.globalData.user_id,
+          token: app.globalData.token
+        },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: res => {
+          console.log(res);
+          this.setData({ items: this.data.items.concat( res.data.items) ,page:this.data.page+1});
+        }, fail: res => { console.log(res); }
+      })
+    }else if(this.data.type=='keyword'){
+      wx.request({
+        url: app.globalData.domain + '/mina_find/get_find_pagination', // common for get newest.
+        data: {
+          type: 'keyword',
+          page: this.data.page + 1,
+          user_id: app.globalData.user_id,
+          token: app.globalData.token,
+          keyword: kw,
+        },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success: res => {
+          console.log(res);
+          this.setData({ items: this.data.items.concat( res.data.items ), total_pages: res.data.pages ,page:this.data.page+1 });
+        }, fail: res => { console.log(res); }
+      });
+
+    }
   }
 
 })
+
+
