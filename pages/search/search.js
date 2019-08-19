@@ -32,7 +32,15 @@ Page({
           "Content-Type": "application/json"
         },
         success:res=>{
-          this.setData({result_array:res.data.page_item,total_pages:res.data.total_pages});
+          console.log(res);
+          // slice(0,140) in case there's too many words.
+          var pi = res.data.page_item;
+          for(let i=0;i<pi.length;i++){
+            if(pi[i].body.length > 30){
+              pi[i].body = pi[i].body.slice(0,30) + '...';
+            }
+          }
+          this.setData({result_array:pi,total_pages:res.data.total_pages});
           console.log(res);
         }
       })
@@ -61,7 +69,13 @@ Page({
       },
       success: res => {
         //注意这里，是把新数据加到page_items的后面，而不是替换
-        this.setData({ result_array: this.data.result_array.concat(res.data.page_item) });
+        var pi = res.data.page_item;
+        for (let i = 0; i < pi.length; i++) {
+          if (pi[i].body.length > 30) {
+            pi[i].body = pi[i].body.slice(0, 30) + '...';
+          }
+        }
+        this.setData({ result_array: this.data.result_array.concat(pi) });
         /*  concat方法连接两个array，得到一个新的array，原来的array不变 */
         console.log(res);
         this.setData({ page: this.data.page + 1 });

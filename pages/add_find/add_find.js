@@ -25,6 +25,8 @@ Page({
       sourceType:['album'],
       success: function(res) {
         var tempFilePaths = res.tempFilePaths;
+
+        //again, preview first.
         wx.uploadFile({
           url: app.globalData.domain + '/upload/find_pic',
           filePath: tempFilePaths[0],
