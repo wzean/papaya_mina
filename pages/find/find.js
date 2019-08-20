@@ -31,6 +31,7 @@ Page({
     total_pages:null
   }, 
   onLoad: function (options) {
+    this.setData({page:1});
     wx.request({
       url: app.globalData.domain + '/mina_find/get_find_pagination', // common for get newest.
       data: {

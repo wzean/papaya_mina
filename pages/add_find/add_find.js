@@ -10,7 +10,7 @@ Page({
   },
 
   onLoad: function (options) {
-
+    
   },
 
   contain_num:function(e){
@@ -24,55 +24,56 @@ Page({
       sizeType:['compressed'],
       sourceType:['album'],
       success: function(res) {
-        var tempFilePaths = res.tempFilePaths;
-
-        //again, preview first.
-        wx.uploadFile({
-          url: app.globalData.domain + '/upload/find_pic',
-          filePath: tempFilePaths[0],
-          name: 'pic', header: {
-            "Content-Type": "multipart/form-data"//记得设置
-          },
-          formData:{
-            'user_id':app.globalData.user_id,
-            'token':app.globalData.token
-          },
-          success:res=>{
-            console.log(res);
-            e = JSON.parse(res.data);
-            console.log(e);
-            that.setData({image_url:app.globalData.domain + e.url,btn_text:"更改图片",image_id:e.f_image_id});
-            // save the iamge id and url somewhere for a find commit.
-          }
-        })
+        console.log(res);
+        var pic_local_url = res.tempFilePaths[0];
+        that.setData({ image_url: pic_local_url,btn_text: "更改图片"});
       }
-        
         })
       },
       commit:function(e){
         console.log(e);
-        wx.request({
-          url: app.globalData.domain + '/mina_find/new_find',
-          data:{
-            user_id:app.globalData.user_id,
-            token:app.globalData.token,
-            text:this.data.text,
-            image_id:this.data.image_id
+        // upload here
+
+        wx.uploadFile({
+          url: app.globalData.domain + '/upload/find_pic',
+          filePath: this.data.image_url,
+          name: 'pic', header: {
+            "Content-Type": "multipart/form-data"//记得设置
           },
-          header:{
-            "Content-Type": "application/json"
+          formData: {
+            'user_id': app.globalData.user_id,
+            'token': app.globalData.token
           },
-          success:res=>{
-            console.log(res);
-            wx.showToast({
-              title: '发表成功',
-              duration:1500
+          success: res => {
+            console.log(res); 
+            e = JSON.parse(res.data);
+            this.setData({ image_id: e.f_image_id});
+            wx.request({
+              url: app.globalData.domain + '/mina_find/new_find',
+              data: {
+                user_id: app.globalData.user_id,
+                token: app.globalData.token,
+                text: this.data.text,
+                image_id: this.data.image_id
+              },
+              header: {
+                "Content-Type": "application/json"
+              },
+              success: res => {
+                console.log(res);
+                wx.showToast({
+                  title: '发表成功',
+                  duration: 1500
+                });
+                wx.navigateBack();
+              }
             });
-            wx.navigateBack();
           }
-        })
+        })}
         
-      }
+
+        
+      
   
 
 })

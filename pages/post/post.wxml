@@ -6,6 +6,13 @@
 
 <rich-text nodes="{{nodes}}"></rich-text>
 
+<block wx:for="{{q_links}}" >
+  <navigator style='color:skyblue' wx:if="{{item}}" id="{{item}}" bindtap='see_link'>{{item}}</navigator>
+</block>
+
+
+
+
 <navigator id="{{post.id}}" bindtap='censor'>举报</navigator>
 <view>----------------------------------</view>
 <view>回答</view>
@@ -17,6 +24,9 @@
 
 
   <rich-text nodes="{{item.dom}}"></rich-text>
+  <block wx:for="{{item.links}}" >
+    <navigator style='color:skyblue' wx:if="{{item}}" id="{{item}}" bindtap='see_link'>{{item}}</navigator>
+  </block>
 
   <navigator id="{{item.id}}.{{index}}" bindtap='like'>👍 {{item.like_num}}</navigator>
   <navigator id="{{item.id}}" bindtap='censor'>举报</navigator>

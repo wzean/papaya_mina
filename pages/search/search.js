@@ -2,21 +2,17 @@ const app = getApp();
 
 Page({
   data: {
-    disabled:true,
     search_words:"",
     rq_url:app.globalData.domain + '/mina_api/search_post',
     result_array:[],
     page:1,
-    tips:"北航知道v2 alpha 上线了!尽管玩吧！反正alpha过后，这些数据不会保留的。",
-
+    tips:"北航知道0.1b版 b代表beta 我们准备好了",
     total_pages:null
   },
   search_input:function(e){
     var content = e.detail.value;
     console.log(content);
-    if(content!=''){
-      this.setData({search_words:content,disabled:false});
-    }
+    this.setData({search_words:content});
   },
   search_execute:function(e){
     this.setData({page:1,total_pages:null})
@@ -34,17 +30,21 @@ Page({
         success:res=>{
           console.log(res);
           // slice(0,140) in case there's too many words.
+
           var pi = res.data.page_item;
+          if(pi.length){
+            console.log('pi.length',pi.length);
           for(let i=0;i<pi.length;i++){
             if(pi[i].body.length > 30){
               pi[i].body = pi[i].body.slice(0,30) + '...';
             }
           }
-          this.setData({result_array:pi,total_pages:res.data.total_pages});
-          console.log(res);
+          this.setData({result_array:pi,total_pages:res.data.total_pages,tips:null});
+            console.log(res);
+          } else { this.setData({tips:"什么也没搜到...建议您使用近义词搜索或去提问",result_array:null,total_pages:null});}
         }
       })
-    }
+    } else { this.setData({ tips: "北航知道0.1b版 b代表beta 我们准备好了", result_array: null, total_pages: null });}
   },
   get_post:function(e){
     console.log(e.currentTarget.id);
