@@ -1,16 +1,20 @@
 const app = getApp();
 
+const dict = ['em','new','hot'];
+
 Page({
 
   data: {
+    currentTab: 0,
+    is_showing_post:true,
     result_array:[],
     page:1,
     rq_url:null,
-    kind:'new',
+    kind:'em',
     total_pages:null
   },
   onLoad: function (options) {
-    this.get_new();
+    this.get_em();
   },
   get_new:function(e){
     this.setData({kind:'new',page:1});
@@ -128,5 +132,24 @@ Page({
       }
     });
   },
+  swichNav: function (e) {
+    console.log(e);
+    const cur = e.target.dataset.current;
+    var that = this;
+    if (this.data.currentTab === cur) {return;} 
+    else {
+      that.setData({ });
+      switch(cur){
+        case '0':
+          that.setData({ is_showing_post: true, currentTab: cur, kind: dict[cur]});that.get_em();break;
+        case '1':
+          that.setData({ is_showing_post: true, currentTab: cur, kind: dict[cur]});that.get_new();break;
+        case '2':
+          that.setData({ is_showing_post: true, currentTab: cur, kind: dict[cur] });that.get_hot();break;
+        case '3':
+          that.setData({ is_showing_post: false, currentTab: cur});
+      }
+    }
+  }
 
 })
