@@ -1,3 +1,0 @@
-<view>填写用户信息</view>
-<input style='border-style:solid;border-width:0.1rpx' bindinput='' placeholder='姓名'></input>
-<input style='border-style:solid;border-width:0.1rpx' bindinput='' placeholder='学号'></input>

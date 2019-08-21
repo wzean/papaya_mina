@@ -1,2 +1,0 @@
-<text>render_pic_post.wxml 渲染带图片的Post</text>
-<rich-text nodes="{{nodes}}"></rich-text>
