@@ -38,8 +38,10 @@
 ## question 问题
 "问答"栏的页面
 
-## raise_with_pic 带图片的提问
+## raise_with_pic(obsolete) 带图片的提问
 带图片的提问界面(与之前发raise区分,raise已经删除了)
+obsolete意思是废弃了
+现在已将提问整合到"问答"中,见question
 
 ## reply 回答
 回答界面，与提问界面稍有不同

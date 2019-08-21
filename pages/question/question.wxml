@@ -25,4 +25,23 @@
 
 <!-- case : raise -->
 
-<view wx:if="{{!is_showing_post}}">提问</view>
+<view wx:if="{{!is_showing_post}}">
+
+
+<view>问题：</view>
+<input bindconfirm='get_title' placeholder='输入您的问题'></input>
+<switch bindchange='set_urgent'>紧急</switch>
+<view>描述:可以插入图片哦</view>
+<button bindtap='add_text' >插入文本框</button>
+<button bindtap='add_pic'>插入图片</button>
+<block wx:for='{{dom}}'>
+<textarea id="{{index}}" style='border-style:solid;border-width:0.1rpx' wx:if='{{item.type == "text"}}' id="{{index}}" placeholder='140字文本框' value='{{item.value}}' bindinput='on_edit_text'></textarea>
+<image wx:if="{{item.type == 'img'}}" id="{{index}}" src="{{item.value}}" mode='widthFix' style='width:250px'></image>
+<navigator wx:if="{{item}}" id="{{index}}" bindtap='delete_node'>删除</navigator>
+</block>
+
+
+<button bindtap='submit'>提交</button>
+
+
+</view>
