@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/search/search",
+    "pages/index/index",
+    "pages/find/find",
+    "pages/question/question",
+    "pages/raise/raise",
+    "pages/me/me",
+    "pages/post/post",
+    "pages/reply/reply",
+    "pages/modify/modify",
+    "pages/my/my",
+    "pages/add_find/add_find",
+    "pages/censor/censor",
+    "pages/my_find/my_find",
+    "pages/feedback/feedback",
+    "pages/raise_with_pic/raise_with_pic",
+    "pages/render_pic_post/render_pic_post",
+    "pages/personal/personal",
+    "pages/link/link"
+  ],
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#777777",
+    "selectedColor": "#004f97",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/search/search",
+        "text": "搜索",
+        "iconPath": "Images/图片1.png",
+        "selectedIconPath": "Images/图片1-.png"
+      },
+      {
+        "pagePath": "pages/question/question",
+        "text": "问答",
+        "iconPath": "Images/QA11.png",
+        "selectedIconPath": "Images/QA11-.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+        "iconPath": "Images/discovery.png",
+        "selectedIconPath": "Images/discovery-.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "Images/图片2.png",
+        "selectedIconPath": "Images/图片2-.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#EDEDED",
+    "navigationBarTitleText": "北航知道",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}
